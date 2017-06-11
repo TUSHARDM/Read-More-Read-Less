@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Read More - Less with single class name Applicable under all situations</title>
+</head>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  var moretext = "Read more ";
+  var lesstext = "Read less ";
+  jQuery('.detailsinnerpage').each(function() {
+      var content = jQuery(this);
+      if(content.children('p').length > 1) {
+          content.children('p:eq("1")').nextAll().wrapAll('<div class="morecontent" />')
+          jQuery('.morecontent').after('<a href="javascript:void(0)" class="read-more">' + moretext + '</a>');
+      }
+  });
+  jQuery(".detailsinnerpage .read-more").click(function(){
+      if(jQuery(this).hasClass("less")) {
+          jQuery(this).removeClass("less");
+          jQuery(this).html(moretext);
+          jQuery('.morecontent').slideUp(1000);
+      } else {
+          jQuery(this).addClass("less");
+          jQuery(this).html(lesstext);
+          jQuery('.morecontent').slideDown(1000);
+      }
+      return false;
+  });
+});
+</script>
+<style type="text/css">
+.detailsinnerpage {
+  padding: 10px; border: 1px solid #ccc; border-radius: 4px; text-align: justify;
+}
+.morecontent {
+    display: none;
+}
+p{
+    margin:0;
+}
+</style>
+<body>
+  <div class="detailsinnerpage">
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',</p> 
+    <p>making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',</p> 
+    <p>making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+  </div>
+</body>
+</html>
